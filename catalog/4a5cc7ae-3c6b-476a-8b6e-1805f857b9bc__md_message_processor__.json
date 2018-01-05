@@ -1,0 +1,11 @@
+{
+    "inputMessageMetadata": {
+        "messagePayload": {
+            "connectorName": "#_custom_mule_metadata_type_#",
+            "typeId": "FlitsGegevens"
+        }
+    },
+    "outputMessageMetadata": {},
+    "id": "4a5cc7ae-3c6b-476a-8b6e-1805f857b9bc",
+    "version": "5.2.0.0"
+}

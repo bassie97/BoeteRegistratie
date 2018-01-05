@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/current/mule-ws.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd">
+    <http:listener-config name="HTTP_Listener_Configuration" host="localhost" port="8081" doc:name="HTTP Listener Configuration"/>
+    <ws:consumer-config name="Web_Service_Consumer" service="RDWgegevensService" port="RDWgegevensPort" serviceAddress="http://localhost:8888/RDW" wsdlLocation="http://localhost:8888/RDW?wsdl" doc:name="Web Service Consumer"/>
+    <ws:consumer-config name="Web_Service_Consumer1" service="RDWgegevensService" port="RDWgegevensPort" serviceAddress="http://localhost:8082/RDW" wsdlLocation="http://localhost:8082/RDW?wsdl" doc:name="Web Service Consumer"/>
+    <flow name="boeteregistratieflowFlow">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="*" metadata:id="e04e33d5-8895-4721-a2bc-28512ea7a143" doc:name="Flitspaal"/>
+        <dw:transform-message metadata:id="4a5cc7ae-3c6b-476a-8b6e-1805f857b9bc" doc:name="Transform Message">
+            <dw:input-payload mimeType="application/json"/>
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/xml
+%namespace ns0 http://service.rdw.web.hanze.nl/
+---
+{
+	ns0#getGegevens: {
+		arg0: payload.Kenteken
+	}
+}]]></dw:set-payload>
+        </dw:transform-message>
+        <ws:consumer config-ref="Web_Service_Consumer" operation="getGegevens" doc:name="Web Service Consumer"/>
+    </flow>
+</mule>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BoeteregistratieSysteem.iml" filepath="$PROJECT_DIR$/BoeteregistratieSysteem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FlitsPaal/FlitsPaal.iml" filepath="$PROJECT_DIR$/FlitsPaal/FlitsPaal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RDW/RDW.iml" filepath="$PROJECT_DIR$/RDW/RDW.iml" />
+    </modules>
+  </component>
+</project>
