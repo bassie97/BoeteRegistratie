@@ -8,6 +8,8 @@
 
 package nl.hanze.web.rdw.service;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -43,6 +45,7 @@ import javax.xml.bind.annotation.XmlType;
     "typeAanduiding",
     "typeMotor"
 })
+@Embeddable
 public class Model {
 
     protected String merkNaam;

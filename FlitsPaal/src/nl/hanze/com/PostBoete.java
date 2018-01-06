@@ -23,7 +23,7 @@ public class PostBoete
         String username="myusername";
         String password="mypassword";
         JSONObject user=new JSONObject();
-        user.put("Kenteken", "davy jones");
+        user.put("Kenteken", "PN879");
         user.put("Max_Toegestaan", "30");
         user.put("Snelheid", "123");
         String jsonData=user.toString();

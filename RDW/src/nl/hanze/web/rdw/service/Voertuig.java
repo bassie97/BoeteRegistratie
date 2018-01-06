@@ -8,9 +8,11 @@
 
 package nl.hanze.web.rdw.service;
 
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
+import java.io.Serializable;
 
 
 /**
@@ -37,20 +39,26 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Voertuig", propOrder = {
+@XmlType(name = "Voertuig", propOrder = {"id",
     "bsn",
     "chassisNummer",
     "kenteken",
     "kleur",
     "model"
 })
-public class Voertuig {
+
+@Entity
+@NamedQuery(name="Voertuig.findByKenteken", query="SELECT v FROM Voertuig v WHERE kenteken = :kenteken")
+public class Voertuig implements Serializable{
+
+    @Id @GeneratedValue(strategy=GenerationType.AUTO) int id;
 
     protected long bsn;
     protected String chassisNummer;
     protected String kenteken;
     protected String kleur;
-    protected Model model;
+
+    @Embedded Model model;
 
     /**
      * Gets the value of the bsn property.
